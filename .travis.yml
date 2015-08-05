@@ -1,10 +1,13 @@
 install:
-  - sudo apt-get update
+  - sudo sh -c "wget -qO- https://get.docker.io/gpg | apt-key add -"
+  - sudo sh -c "apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D"
+  - sudo sh -c "echo deb https://apt.dockerproject.org/repo ubuntu-precise main > /etc/apt/sources.list.d/docker.list"
   - sudo mkdir -p /var/lib/docker
   - echo exit 101 | sudo tee /usr/sbin/policy-rc.d
   - sudo chmod +x /usr/sbin/policy-rc.d
-  - sudo apt-get install -y slirp wget aufs-tools cgroup-lite
-  - sudo wget -qO- https://get.docker.com/ | sh
+  - sudo apt-get update
+  - sudo apt-get upgrade -y
+  - sudo apt-get install -y slirp aufs-tools cgroup-lite docker-engine
   - curl -sLo linux https://github.com/jpetazzo/sekexe/raw/master/uml
   - chmod +x linux
 
