@@ -1,0 +1,21 @@
+machine:
+  node:
+    version: 0.12.7
+  ruby:
+    version: 2.2.2
+  services:
+    - docker
+  environment:
+    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+
+dependencies:
+  bundler:
+    without: [development]
+  cache_directories:
+    - vendor/bundle
+
+deployment:
+  production:
+    branch: /.*/
+    commands:
+      - ./deploy.sh
