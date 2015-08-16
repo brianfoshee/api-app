@@ -1,24 +1,17 @@
-## README
+### Deploying to Heroku with heroku-docker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- install docker
+- install heroku-docker plugin
+- setup dockerfile
+  - /app stuff
+  - ruby
+  - node
+  - no onbuild?
+- setup circleci
+  - link github and repo
+  - add heroku api key
+  - set heroku deploy user
+  - circle.yml config
+  - .dockerignore vendor/bundle
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- future: heroku-docker compose branch

@@ -10,3 +10,4 @@ web:
     - db
   environment:
     DATABASE_URL: 'postgres://postgres:@db:5432/postgres'
+  env_file: .env
