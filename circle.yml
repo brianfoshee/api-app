@@ -3,18 +3,18 @@ machine:
     - docker
 
 dependencies:
+  pre:
+    - mv env.test .env
   override:
     - ./dependencies.sh
 
 database:
   override:
-    - echo "Don't need to run any databse setup."
+    - docker-compose run web /app/user/bin/rake db:create db:schema:load --trace
 
 test:
-  pre:
-    - mv env.test .env
   override:
-    - ./test.sh
+    - docker-compose run web /app/user/bin/rake test
 
 deployment:
   production:
