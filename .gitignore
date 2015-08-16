@@ -1,5 +1,6 @@
 # Ignore bundler config.
 /.bundle
+dm.sh
 
 # Ignore all logfiles and tempfiles.
 /log/*

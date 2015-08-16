@@ -2,8 +2,8 @@ FROM heroku/cedar:14
 
 RUN useradd -d /app -m app
 USER app
-RUN mkdir -p /app/src
-WORKDIR /app/src
+RUN mkdir -p /app/user
+WORKDIR /app/user
 
 ENV HOME /app
 ENV RUBY_ENGINE 2.2.2
@@ -31,21 +31,21 @@ RUN echo "export PATH=\"/app/heroku/ruby/bin:/app/heroku/bundler/bin:/app/heroku
 RUN echo "export GEM_PATH=\"/app/heroku/bundler\"" >> /app/.profile.d/ruby.sh
 RUN echo "export GEM_HOME=\"/app/heroku/bundler\"" >> /app/.profile.d/ruby.sh
 RUN echo "export BUNDLE_APP_CONFIG=\"\$GEM_HOME\"" >> /app/.profile.d/ruby.sh
-RUN echo "cd /app/src" >> /app/.profile.d/ruby.sh
+RUN echo "cd /app/user" >> /app/.profile.d/ruby.sh
 
 EXPOSE 3000
 
-ONBUILD COPY Gemfile /app/src/
-ONBUILD COPY Gemfile.lock /app/src/
+COPY Gemfile /app/user/
+COPY Gemfile.lock /app/user/
 
-ONBUILD USER root
-ONBUILD RUN chown app /app/src/Gemfile.lock
-ONBUILD USER app
+USER root
+RUN chown app /app/user/Gemfile.lock
+USER app
 
-ONBUILD RUN bundle install --jobs 4
+RUN bundle install --jobs 4 --without development:test
 
-ONBUILD COPY . /app/src
+COPY . /app/user
 
-ONBUILD USER root
-ONBUILD RUN chown -R app /app
-ONBUILD USER app
+USER root
+RUN chown -R app /app
+USER app
