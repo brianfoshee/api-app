@@ -1,20 +1,12 @@
+db:
+  image: postgres
+
 web:
   build: .
-  command: bin/rails server --binding 0.0.0.0
+  command: /app/user/bin/rails server --binding 0.0.0.0
   ports:
     - '3000:3000'
   links:
     - db
   environment:
     DATABASE_URL: 'postgres://postgres:@db:5432/postgres'
-
-bash:
-  build: .
-  command: /bin/bash
-  links:
-    - db
-  environment:
-    DATABASE_URL: 'postgres://postgres:@db:5432/postgres'
-
-db:
-  image: postgres

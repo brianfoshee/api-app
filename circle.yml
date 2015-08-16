@@ -16,6 +16,6 @@ dependencies:
 
 deployment:
   production:
-    branch: /.*/
+    branch: master
     commands:
       - ./deploy.sh
