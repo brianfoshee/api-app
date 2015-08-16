@@ -42,7 +42,7 @@ USER root
 RUN chown app /app/user/Gemfile.lock
 USER app
 
-RUN bundle install --jobs 4 --without development:test
+RUN bundle install --jobs 4
 
 COPY . /app/user
 
