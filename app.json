@@ -1,5 +1,5 @@
 {
   "name": "api-app",
   "description": "example rails 5 api-only application",
-  "image": "heroku/ruby"
+  "image": "heroku/ruby:2.2.3"
 }
