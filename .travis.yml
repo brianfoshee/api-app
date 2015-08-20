@@ -1,0 +1,6 @@
+sudo: required
+services:
+  - docker
+
+install:
+  - sudo apt-get update && apt-get upgrade -y
